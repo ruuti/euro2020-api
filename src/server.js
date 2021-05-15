@@ -5,6 +5,7 @@ import helmet from "helmet";
 import cors from "cors";
 import rateLimit from "express-rate-limit";
 import compression from "compression";
+import config from "config";
 
 const app = express();
 
@@ -44,5 +45,8 @@ app.use("/euro2020/groups", routes.groups);
 
 // Add /matches endpoints
 app.use("/euro2020/matches", routes.matches);
+
+app.use(`/${config.staticFileDirName}`,
+  express.static(config.staticFileDirName));
 
 export default app;

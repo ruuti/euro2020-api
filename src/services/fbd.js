@@ -21,3 +21,9 @@ export const getStandings = async (id = "2018") =>
  */
 export const getMatches = async (id = "2018") =>
   await instance.get(`/competitions/${id}/matches`);
+/**
+ * Get all teams for Euro 2020 competition.
+ * @returns {Promise}
+ */
+export const getTeams = async (id = "2018") =>
+  await instance.get(`/competitions/${id}/teams`);

@@ -1,3 +1,5 @@
+import { getLogoUrl } from "utils";
+
 export default class Matches {
   constructor (data) {
     this.matches = [];
@@ -7,8 +9,14 @@ export default class Matches {
         "status": match.status,
         "stage": match.stage,
         "group": match.group,
-        "homeTeam": match.homeTeam.name,
-        "awayTeam": match.awayTeam.name
+        "homeTeam": {
+          "name": match.homeTeam.name,
+          "logoUrl": getLogoUrl(match.homeTeam.id)
+        },
+        "awayTeam": {
+          "name": match.awayTeam.name,
+          "logoUrl": getLogoUrl(match.awayTeam.id)
+        }
       };
 
       this.matches.push(matchData);
