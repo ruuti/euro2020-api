@@ -48,4 +48,4 @@ jobs:
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
-        script: pm2 start /opt/app/dist/index.js --name "api"
+        script: cd /opt/app/; pm2 stop api; pm2 delete api; pm2 start pm2.config.js
