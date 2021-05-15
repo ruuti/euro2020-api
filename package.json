@@ -6,8 +6,8 @@
   "scripts": {
     "start": "nodemon --exec babel-node src/index.js",
     "test": "cross-env NODE_ENV=test MAX_REQUESTS_PER_MINUTE=5 jest --forceExit --detectOpenHandles",
-    "lint": "eslint src/**/*.js",
-    "lint:fix": "eslint src/**/*.js --fix"
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix"
   },
   "engines": {
     "node": ">= 15.11.0"
