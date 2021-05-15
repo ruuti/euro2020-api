@@ -8,7 +8,8 @@
     "test": "cross-env NODE_ENV=test MAX_REQUESTS_PER_MINUTE=5 jest --forceExit --detectOpenHandles",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "collectlogos": "babel-node src/collectLogos.js"
+    "collectlogos": "babel-node src/collectLogos.js",
+    "build": "babel ./src --out-dir dist"
   },
   "engines": {
     "node": ">= 15.11.0"
