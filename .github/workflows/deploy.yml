@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
 
-    - name: Copy files via scp
+    - name: Copy files to server
       uses: appleboy/scp-action@master
       env:
         HOST: ${{ secrets.HOST }}
@@ -23,7 +23,7 @@ jobs:
         source: "."
         target: "/opt/app"
 
-    - name: Executing remote command
+    - name: Install dependencies
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -32,7 +32,7 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
         script: cd /opt/app/; npm ci;
 
-    - name: Executing remote command
+    - name: Build
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
@@ -41,11 +41,11 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
         script: cd /opt/app/; npm run build;
 
-    - name: Executing remote command
+    - name: Start or reload PM2
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         USERNAME: ${{ secrets.USERNAME }}
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
-        script: cd /opt/app/; pm2 stop api; pm2 delete api; pm2 start pm2.config.js
+        script: cd /opt/app/; pm2 startOrReload pm2.config.js --update-env;
