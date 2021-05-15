@@ -1,0 +1,9 @@
+{
+  "parser": "babel-eslint",
+  "rules": {
+    "eqeqeq": "warn",
+    "quotes": "warn",
+    "semi": "warn",
+    "indent": ["warn", 2]
+  }
+}
