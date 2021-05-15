@@ -1,3 +1,5 @@
+import { getLogoUrl } from "utils";
+
 export default class Standings {
   constructor (data) {
     this.groups = [];
@@ -13,7 +15,7 @@ export default class Standings {
             "won": team.won,
             "draw": team.draw,
             "lost": team.lost,
-            "crestUrl": team.team.crestUrl
+            "logoUrl": getLogoUrl(team.team.id)
           });
         });
         const groupData = {
