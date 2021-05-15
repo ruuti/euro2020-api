@@ -13,7 +13,7 @@ app.use(compression());
 
 // Enable CORS for all domains
 const corsOptions = {
-  origin: '*',
+  origin: "*",
   optionsSuccessStatus: 200
 };
 app.use(cors(corsOptions));
@@ -36,7 +36,10 @@ const limiter = rateLimit({
 // apply rate limiting to all requests
 app.use(limiter);
 
-// Add /trailer endpoints
-app.use('/euro2020/groups', routes.groups);
+// Add /groups endpoints
+app.use("/euro2020/groups", routes.groups);
+
+// Add /matches endpoints
+app.use("/euro2020/matches", routes.matches);
 
 export default app;

@@ -1,9 +1,10 @@
 export default class Standings {
-  constructor(data){
+  constructor (data) {
     this.groups = [];
-    data.standings.map(group => {
-      if(group.stage === "GROUP_STAGE"){
+    data.standings.map((group) => {
+      if (group.stage === "GROUP_STAGE") {
         const table = [];
+
         group.table.map((team) => {
           table.push({
             "team": team.team.name,
@@ -19,6 +20,7 @@ export default class Standings {
           "name": group.group,
           "table": table
         };
+
         this.groups.push(groupData);
       }
     });
