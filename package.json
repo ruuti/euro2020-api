@@ -8,7 +8,8 @@
     "test": "cross-env NODE_ENV=test MAX_REQUESTS_PER_MINUTE=5 jest --forceExit --detectOpenHandles",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "collectlogos": "babel-node src/collectLogos.js"
+    "collectlogos": "babel-node src/collectLogos.js",
+    "build": "babel --plugins @babel/plugin-transform-modules-commonjs ./src --out-dir dist"
   },
   "engines": {
     "node": ">= 15.11.0"
@@ -30,15 +31,18 @@
   },
   "homepage": "https://github.com/ruuti/euro2020-api#readme",
   "dependencies": {
+    "@babel/cli": "^7.13.16",
     "apicache": "^1.6.2",
     "axios": "^0.21.1",
     "compression": "^1.7.4",
+    "core-js": "^3.12.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "helmet": "^4.5.0",
-    "joi": "^17.4.0"
+    "joi": "^17.4.0",
+    "regenerator-runtime": "^0.13.7"
   },
   "devDependencies": {
     "@babel/core": "^7.13.16",

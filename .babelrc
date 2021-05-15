@@ -5,7 +5,8 @@
   "plugins": [
     ["module-resolver", {
       "root": ["./src"]
-    }]
+    },
+    "@babel/transform-runtime"]
   ],
   "env": {
     "test": {
