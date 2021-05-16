@@ -39,15 +39,15 @@ const limiter = rateLimit({
     "error": "Too many requests, please try again later."
   }
 });
-// apply rate limiting to all requests
 
+// apply rate limiting to all requests
 app.use(limiter);
 
-// Add /groups endpoints
-app.use("/euro2020", routes.groups);
-
-// Add /matches endpoints
-app.use("/euro2020", routes.matches);
+// Add routes
+app.use([
+  routes.groups,
+  routes.matches
+]);
 
 app.use(`/${config.staticFileDirName}`,
   express.static(config.staticFileDirName));
