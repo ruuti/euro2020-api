@@ -41,10 +41,10 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Add /groups endpoints
-app.use("/euro2020/groups", routes.groups);
+app.use("/euro2020", routes.groups);
 
 // Add /matches endpoints
-app.use("/euro2020/matches", routes.matches);
+app.use("/euro2020", routes.matches);
 
 app.use(`/${config.staticFileDirName}`,
   express.static(config.staticFileDirName));

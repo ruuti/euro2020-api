@@ -3,7 +3,7 @@ import apicache from "apicache";
 import { fbd } from "services";
 import Matches from "models/Matches";
 
-const router = new Router();
+const router = new Router({ "strict": true });
 const cache = apicache.middleware;
 
 /**
@@ -11,7 +11,7 @@ const cache = apicache.middleware;
  * @param {object} req HTTP request argument
  * @param {object} res HTTP response argument
  */
-router.get("/", cache("5 minutes"), async (req, res) => {
+router.get("/matches", cache("5 minutes"), async (req, res) => {
   try {
     const matchesResponse = await fbd.getMatches();
     const response = new Matches(matchesResponse.data);
