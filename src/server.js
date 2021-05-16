@@ -6,8 +6,11 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import compression from "compression";
 import config from "config";
+import { hasValidConfigs } from "utils";
 
 const app = express();
+
+hasValidConfigs();
 
 // Use compressions
 app.use(compression());
