@@ -1,21 +1,28 @@
 import { Router } from "express";
-import apicache from "apicache";
 import { fbd } from "services";
 import Matches from "models/Matches";
+import { getFromCache, saveToCache } from "cache";
 
 const router = new Router();
-const cache = apicache.middleware;
 
 /**
  * GET / route that responds with matches array
  * @param {object} req HTTP request argument
  * @param {object} res HTTP response argument
  */
-router.get("/", cache("5 minutes"), async (req, res) => {
+router.get("/", async (req, res) => {
+  const cacheKey = "matchesList";
+  const cachedResponse = await getFromCache(cacheKey);
+
+  if (cachedResponse) {
+    return res.send(cachedResponse);
+  }
+
   try {
     const matchesResponse = await fbd.getMatches();
     const response = new Matches(matchesResponse.data);
 
+    await saveToCache(cacheKey, response, "5 minutes");
     return res.send(response);
   } catch (error) {
     return res.status(500).send({ "error": "Unknown error" });
