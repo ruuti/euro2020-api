@@ -6,8 +6,11 @@ import cors from "cors";
 import rateLimit from "express-rate-limit";
 import compression from "compression";
 import config from "config";
+import { hasValidConfigs } from "utils";
 
 const app = express();
+
+hasValidConfigs();
 
 // Use compressions
 app.use(compression());
@@ -41,10 +44,10 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Add /groups endpoints
-app.use("/euro2020/groups", routes.groups);
+app.use("/euro2020", routes.groups);
 
 // Add /matches endpoints
-app.use("/euro2020/matches", routes.matches);
+app.use("/euro2020", routes.matches);
 
 app.use(`/${config.staticFileDirName}`,
   express.static(config.staticFileDirName));

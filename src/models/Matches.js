@@ -1,23 +1,10 @@
-import { getLogoUrl } from "utils";
+import { Match } from "models";
 
 export default class Matches {
   constructor (data) {
     this.matches = [];
     data.matches.map((match) => {
-      const matchData = {
-        "startDateTime": match.utcDate,
-        "status": match.status,
-        "stage": match.stage,
-        "group": match.group,
-        "homeTeam": {
-          "name": match.homeTeam.name,
-          "logoUrl": getLogoUrl(match.homeTeam.id)
-        },
-        "awayTeam": {
-          "name": match.awayTeam.name,
-          "logoUrl": getLogoUrl(match.awayTeam.id)
-        }
-      };
+      const matchData = new Match(match);
 
       this.matches.push(matchData);
     });
