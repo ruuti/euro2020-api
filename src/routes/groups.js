@@ -1,7 +1,8 @@
 import { Router } from "express";
 import apicache from "apicache";
 import { fbd } from "services";
-import Standings from "models/Standings";
+import { Standings } from "models";
+import logger from "logger";
 
 const router = new Router({ "strict": true });
 const cache = apicache.middleware;
@@ -18,6 +19,7 @@ router.get("/groups", cache("5 minutes"), async (req, res) => {
 
     return res.send(responseData);
   } catch (error) {
+    logger.error(error.message);
     return res.status(500).send({ "error": "Unknown error" });
   }
 });
