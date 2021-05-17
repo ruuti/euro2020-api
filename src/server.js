@@ -7,6 +7,7 @@ import rateLimit from "express-rate-limit";
 import compression from "compression";
 import config from "config";
 import { hasValidConfigs } from "utils";
+import versionHeaderMiddleware from "middlewares/versionHeaderMiddleware";
 
 const app = express();
 
@@ -39,6 +40,9 @@ const limiter = rateLimit({
     "error": "Too many requests, please try again later."
   }
 });
+
+// Apply X-API-Version header to all requests
+app.use(versionHeaderMiddleware);
 
 // apply rate limiting to all requests
 app.use(limiter);
