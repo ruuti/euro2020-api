@@ -27,7 +27,7 @@ app.use(cors(corsOptions));
 app.use(helmet());
 
 // Enable trust proxy if service is running behind a reverse proxy
-const TRUST_PROXY = process.env.TRUST_PROXY || 0;
+const TRUST_PROXY = parseInt(process.env.TRUST_PROXY) || 0;
 
 app.set("trust proxy", TRUST_PROXY);
 
