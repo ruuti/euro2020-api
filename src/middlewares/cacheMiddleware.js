@@ -6,13 +6,16 @@ const cacheMiddleware = (duration) => {
     const cachedResponse = await getFromCache(cacheKey);
 
     if (cachedResponse) {
-      res.json(cachedResponse);
+      res.status(cachedResponse.statusCode);
+      res.json(cachedResponse.body);
       return;
     }
 
     res.sendResponse = res.json;
     res.json = async (body) => {
-      await saveToCache(cacheKey, body, duration);
+      const { statusCode } = res;
+
+      await saveToCache(cacheKey, { body, statusCode }, duration);
       res.sendResponse(body);
     };
     next();
