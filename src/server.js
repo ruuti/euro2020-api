@@ -7,7 +7,11 @@ import rateLimit from "express-rate-limit";
 import compression from "compression";
 import config from "config";
 import { hasValidConfigs } from "utils";
-import versionHeaderMiddleware from "middlewares/versionHeaderMiddleware";
+import {
+  versionHeaderMiddleware,
+  errorHandlerMiddleware,
+  notFoundMiddleware
+} from "middlewares";
 
 const app = express();
 
@@ -37,7 +41,8 @@ const limiter = rateLimit({
   // limit each IP to 60 requests per windowMs or use value from env variables
   "max": process.env.MAX_REQUESTS_PER_MINUTE || 60,
   "message": {
-    "error": "Too many requests, please try again later."
+    "status": 429,
+    "message": "Too many requests, please try again later."
   }
 });
 
@@ -55,5 +60,11 @@ app.use([
 
 app.use(`/${config.staticFileDirName}`,
   express.static(config.staticFileDirName));
+
+// 404 error in JSON
+app.use(notFoundMiddleware);
+
+// error handler middleware to return JSON errors
+app.use(errorHandlerMiddleware);
 
 export default app;
