@@ -6,6 +6,7 @@ export default class Match {
     this.status = data.status;
     this.stage = data.stage;
     this.group = data.group;
+    this.groupShort = data.group ? data.group.slice(-1) : null;
     this.homeTeam = {
       "name": data.homeTeam.name,
       "logoUrl": getLogoUrl(data.homeTeam.id)
