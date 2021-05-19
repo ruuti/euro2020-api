@@ -2,6 +2,10 @@
 
 This program is meant to be used as an application server between an application and [football-data.org API](https://www.football-data.org/ "football-data.org website"). Football-data provides an awesome API for Euro 2020 matches and results, but the free version comes with rate limiting. For that reason connecting your website frontend directly to Football Data API doesn't really work.
 
+## Language support
+
+API supports two languages: finnish (`fi-FI`) and english (`en-US`). To request response in specific language include `Accept-Language: xx-XX` header to requests. If language is not specified or invalid the program will use English as a default language.
+
 ## Resources
 
 Euro 2020 API provides two resource endpoints to get data from the external API. It caches the data to memory so that the external API won't get pulled too often.

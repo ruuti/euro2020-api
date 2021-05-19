@@ -1,6 +1,6 @@
 {
   "name": "euro2020-api",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
@@ -40,6 +40,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
+    "express-request-language": "^1.1.15",
     "helmet": "^4.5.0",
     "joi": "^17.4.0",
     "regenerator-runtime": "^0.13.7",
