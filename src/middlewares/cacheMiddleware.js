@@ -2,7 +2,8 @@ import { getFromCache, saveToCache } from "cache";
 
 const cacheMiddleware = (duration) => {
   return async (req, res, next) => {
-    const cacheKey = req.path;
+    const languageCode = req.language;
+    const cacheKey = `${req.path}${languageCode}`;
     const cachedResponse = await getFromCache(cacheKey);
 
     if (cachedResponse) {

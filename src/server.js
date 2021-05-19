@@ -10,8 +10,10 @@ import { hasValidConfigs } from "utils";
 import {
   versionHeaderMiddleware,
   errorHandlerMiddleware,
-  notFoundMiddleware
+  notFoundMiddleware,
+  languageHeaderMiddleware
 } from "middlewares";
+import requestLanguage from "express-request-language";
 
 const app = express();
 
@@ -45,6 +47,14 @@ const limiter = rateLimit({
     "message": "Too many requests, please try again later."
   }
 });
+
+// Language support
+app.use(requestLanguage({
+  "languages": [ "en-US", "fi-FI" ]
+}));
+
+// Apply Content-Language header to all requests
+app.use(languageHeaderMiddleware);
 
 // Apply X-API-Version header to all requests
 app.use(versionHeaderMiddleware);
