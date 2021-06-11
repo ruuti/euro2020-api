@@ -15,5 +15,9 @@ export default class Match {
       "name": data.awayTeam.name,
       "logoUrl": getLogoUrl(data.awayTeam.id)
     };
+    this.score = {
+      "awayTeam": data.score.fullTime.awayTeam,
+      "homeTeam": data.score.fullTime.homeTeam
+    };
   }
 }
