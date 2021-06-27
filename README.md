@@ -20,18 +20,42 @@ Resource returns Euro 2020 matches in JSON format.
   "matches": [
     {
       "startDateTime": "2021-06-11T19:00:00Z",
-      "status": "SCHEDULED",
+      "status": "FINISHED",
       "stage": "GROUP_STAGE",
       "group": "Group A",
+      "groupShort": "A",
       "homeTeam": {
         "name": "Turkey",
-        "logoUrl": "http:://localhost:3000/static/803.svg"
+        "logoUrl": "http://localhost:3000/static/803.svg"
       },
       "awayTeam": {
         "name": "Italy",
-        "logoUrl": "http:://localhost:3000/static/784.svg"
+        "logoUrl": "http://localhost:3000/static/784.svg"
+      },
+      "score": {
+        "awayTeam": 3,
+        "homeTeam": 0
       }
     },
+    {
+      "startDateTime": "2021-06-27T16:00:00Z",
+      "status": "SCHEDULED",
+      "stage": "LAST_16",
+      "group": null,
+      "groupShort": null,
+      "homeTeam": {
+        "name": "Netherlands",
+        "logoUrl": "http://localhost:3000/static/8601.svg"
+      },
+      "awayTeam": {
+        "name": "Czech Republic",
+        "logoUrl": "http://localhost:3000/static/798.svg"
+      },
+      "score": {
+        "awayTeam": null,
+        "homeTeam": null
+      }
+    }
     ...
   ]
 }
